@@ -15,16 +15,19 @@ export default class ScreenQuranBrowser extends Component {
   render() {
     var pressHandlers = this.getItemOnPressHandlers();
     var longPressHandlers = this.getItemOnLongPressHandlers();
+    const { curPage } = this.props;
+    const { ayat } = curPage;
     return (
       <View style={styles.pageContainer}>
         <ScrollView>
           <Text style={styles.textContainer}>
-            {this.props.curPage.ayat.map((ayah) => (
+            {ayat.map((ayah) => (
               <AyahRenderer
                 key={ayah.id}
                 curAyah={ayah}
                 onPresses={pressHandlers}
                 onLongPresses={longPressHandlers}
+                lastAyah={ayat[ayat.length - 1] === ayah}
               />
             ))}
           </Text>
